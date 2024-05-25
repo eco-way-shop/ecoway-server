@@ -27,6 +27,7 @@ gem 'faker'
 gem 'jwt'
 gem 'rack-cors'
 gem 'nokogiri', '~> 1.15', '>= 1.15.6'
+gem 'pkg-config', '~> 1.1', '>= 1.1.7'
 gem 'wdm', '>= 0.1.0', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
