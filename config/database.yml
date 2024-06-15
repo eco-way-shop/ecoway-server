@@ -80,8 +80,7 @@ test:
 #
 production:
   <<: *default
-adapter: postgresql
-encoding: unicode
+
 database: eco_shop
 username: ecoway
 password: tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM
