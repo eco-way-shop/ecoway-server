@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: car_rentals
-  username: postgres
-  password: admin
+  database: car_shop
+  username: ecoway
+  password: tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM
