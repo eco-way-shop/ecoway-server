@@ -24,7 +24,7 @@ class ApplicationController < ActionController::API
 
   def invalid_authentication
 
-    render json: { error: {payload + "----------" + AuthenticationTokenService.valid_payload(payload.first)} }, status: :unauthorized
+    render json: { error:  payload + "----------" + AuthenticationTokenService.valid_payload(payload.first) }, status: :unauthorized
   end
 
   def non_admin_authentication
