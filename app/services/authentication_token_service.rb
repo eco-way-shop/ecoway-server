@@ -1,5 +1,6 @@
 class AuthenticationTokenService
   HMAC_SECRET = Rails.application.secrets.secret_key_base
+  master_key = ENV['SECRET_KEY_BASE']
   ALGORITHM_TYPE = 'HS256'.freeze
 
   def self.call(user_id)
@@ -9,7 +10,7 @@ class AuthenticationTokenService
   end
 
   def self.decode(token)
-    JWT.decode token, HMAC_SECRET, true, { algorithm: ALGORITHM_TYPE }
+    JWT.decode(token, master_key, true, { algorithm: JWT::Algorithm::HS256 })
   rescue JWT::ExpiredSignature, JWT::DecodeError
     false
   end
