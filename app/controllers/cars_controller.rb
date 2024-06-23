@@ -4,7 +4,7 @@ class CarsController < ApplicationController
       MAX_PAGINATION_LIMIT = 20
 
       def index
-        # current_user = current_user!
+        current_user = current_user!
         
         cars = Car.limit(limit).offset(params[:offset])
 
