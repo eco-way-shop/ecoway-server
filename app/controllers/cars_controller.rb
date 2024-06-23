@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
       before_action :authenticate_request!
-      rescue_from NoMethodError, with: :no_user
+      # rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
 
       def index

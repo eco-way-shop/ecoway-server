@@ -4,14 +4,14 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
 
   def authenticate_admin!
-    return invalid_authentication if !payload || !AuthenticationTokenService.valid_payload(payload.first)
+    return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
 
     current_user!
     non_admin_authentication unless @current_user.admin == true
   end
 
   def authenticate_request!
-    return invalid_authentication if !payload || !AuthenticationTokenService.valid_payload(payload.first)
+    return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
 
     current_user!
     invalid_authentication unless @current_user
