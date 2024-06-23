@@ -1,39 +1,30 @@
-class AuthenticationController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create]
+ class AuthenticationController < ApplicationController
+      class AuthenticateError < StandardError; end
 
-  def new
-  end
+      rescue_from ActionController::ParameterMissing, with: :parameter_missing
+      rescue_from AuthenticateError, with: :handle_unauthenticated
 
-  def create
-    user = User.find_by(username: params[:session][:username])
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      redirect_to root_path, notice: 'Успішно авторизовано!'
-    else
-      flash.now[:alert] = 'Неправильний логін або пароль.'
-      render :new
-    end
-  end
+      def create
+        if user
+          raise AuthenticateError unless user.authenticate(params.require(:password))
 
-  def destroy
-    log_out
-    redirect_to root_path, notice: 'Ви успішно вийшли з системи.'
-  end
+          render json: AuthenticateRepresenter.new(user).as_json, status: :created
+        else
+          render json: { error: 'No such user' }, status: :unauthorized
+        end
+      end
 
-  private
+      private
 
-  def authenticate_user!
-    if !current_user.present?
-      redirect_to login_path, notice: 'Будь ласка, увійдіть, щоб продовжити.'
-    end
-  end
+      def user
+        @user ||= User.find_by(username: params.require(:username))
+      end
 
-  def log_in(user)
-    session[:user_id] = user.id
-  end
+      def parameter_missing(error)
+        render json: { error: error.message }, status: :unprocessable_entity
+      end
 
-  def log_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
+      def handle_unauthenticated
+        render json: { error: 'Хибний пароль' }, status: :unauthorized
+      end
 end
