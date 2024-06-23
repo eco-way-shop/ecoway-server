@@ -1,14 +1,14 @@
 class CarsRepresenter
   def initialize(cars, user_id)
     @cars = cars
-    @user_id = user_id
+    # @user_id = user_id
   end
 
   def as_json
     cars.map do |car|
       {
         id: car.id,
-        owner: car.user.username,
+        # owner: car.user.username,
         name: car_name(car),
         fav: favourite?(car.id, user_id),
         transmission: car.transmission,
