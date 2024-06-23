@@ -5,12 +5,13 @@ class AuthenticationController < ApplicationController
       rescue_from AuthenticateError, with: :handle_unauthenticated
 
       def create
-        if user
-          raise AuthenticateError unless user.authenticate(params.require(:password))
-
-          redirect_to "/cars"
+        if user && user.authenticate(params.require(:password))
+          # Successful login
+          session[:user_id] = user.id  # Store user ID in session (optional)
+          redirect_to cars_path
         else
-          render json: { error: 'No such user' }, status: :unauthorized
+          # Authentication failed or user not found
+          render json: { error: user ? 'Invalid credentials' : 'No such user' }, status: :unauthorized
         end
       end
 
