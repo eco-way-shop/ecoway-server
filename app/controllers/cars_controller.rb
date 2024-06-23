@@ -1,10 +1,12 @@
 class CarsController < ApplicationController
       before_action :authenticate_request!
-      rescue_from NoMethodError, with: :no_user
+      # rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
 
       def index
+      
         current_user = current_user!
+        
         cars = Car.limit(limit).offset(params[:offset])
 
         render json: CarsRepresenter.new(cars, current_user.id).as_json

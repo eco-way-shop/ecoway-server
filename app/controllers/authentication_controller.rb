@@ -1,4 +1,4 @@
-class AuthenticationController < ApplicationController
+ class AuthenticationController < ApplicationController
       class AuthenticateError < StandardError; end
 
       rescue_from ActionController::ParameterMissing, with: :parameter_missing
@@ -7,12 +7,10 @@ class AuthenticationController < ApplicationController
       def create
         if user
           raise AuthenticateError unless user.authenticate(params.require(:password))
-          logged_user =  AuthenticateRepresenter.new(user).as_json
-          if logged_user.present?          
-            redirect_to cars_path
-          end
+
+          render json: AuthenticateRepresenter.new(user).as_json, status: :created
         else
-          render json: { error: 'Такого користувача немає' }, status: :unauthorized
+          render json: { error: 'No such user' }, status: :unauthorized
         end
       end
 
@@ -29,5 +27,4 @@ class AuthenticationController < ApplicationController
       def handle_unauthenticated
         render json: { error: 'Хибний пароль' }, status: :unauthorized
       end
-
 end
