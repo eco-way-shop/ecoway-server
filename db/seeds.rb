@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(username: 'user', password: 'password'admin: false)
+User.create(username: 'user', password: 'password', admin: false)
 User.create(username: 'admin', password: 'password', admin: true)
 if ENV['SEED_DATABASE'] == 'true'
 admin_user = User.find_by(username: "admin")
