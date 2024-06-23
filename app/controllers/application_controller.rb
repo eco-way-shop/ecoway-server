@@ -11,6 +11,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_request!
+    p payload
     return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
 
     current_user!
