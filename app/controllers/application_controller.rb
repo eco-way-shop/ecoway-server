@@ -24,7 +24,7 @@ class ApplicationController < ActionController::API
 
   def invalid_authentication
 
-    render json: { error:  request.headers['Authorization'] }, status: :unauthorized
+    render json: { error:  request.headers['Authorization'].split(' ').last }, status: :unauthorized
   end
 
   def non_admin_authentication
