@@ -3,8 +3,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  namespace :api do
-    namespace :v1 do
+
       resources :users, only: :index
       resources :favourites, only: %i[index create destroy]
       resources :cars, only: %i[index  show destroy]
@@ -13,6 +12,6 @@ Rails.application.routes.draw do
       post 'test_drive', to: 'test_drives#create'
       post 'login', to: 'authentication#create'
       post 'register', to: 'users#create'
-    end
-  end
+
+      get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
