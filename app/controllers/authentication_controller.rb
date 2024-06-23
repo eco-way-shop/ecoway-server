@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
         if user
           raise AuthenticateError unless user.authenticate(params.require(:password))
 
-          render json: AuthenticateRepresenter.new(user).as_json, status: :created
+          redirect_to "/cars"
         else
           render json: { error: 'No such user' }, status: :unauthorized
         end

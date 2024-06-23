@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       end
 
       def create
-        user = User.create(user_params)
+        user = User.create(user_params, admin: false)
 
         if user.save
           render json: UserRepresenter.new(user).as_json, status: :created
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
       private
 
       def user_params
-        params.require(:user).permit(:username, :password, admin: false)
+        params.require(:user).permit(:username, :password)
       end
     end
