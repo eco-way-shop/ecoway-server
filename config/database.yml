@@ -85,9 +85,5 @@ test:
 #
 production:
   <<: *default
-
-database: ecoway
-username: ecoway
-password: tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM
-host: postgres://ecoway:tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM@dpg-cp91egf109ks73a2fih0-a/car_shop
-port: 5432
+  host: postgres://ecoway:tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM@dpg-cp91egf109ks73a2fih0-a/car_shop
+  port: 5432
