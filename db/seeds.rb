@@ -10,6 +10,7 @@
 
 User.create(username: 'user1', password: 'password')
 User.create(username: 'admin', password: 'password', admin: true)
+if ENV['SEED_DATABASE'] == 'true'
 admin_user = User.find_by(username: "admin")
 
 admin_user.cars.create!(
@@ -72,3 +73,4 @@ new_car = admin_user.cars.create!(
   battery: 150,
   image_url: "https://img.automoto.ua/auto/Nissan-Leaf-belyiy-Hetchbek-2014-fb7-63653576.webp"
 )
+end

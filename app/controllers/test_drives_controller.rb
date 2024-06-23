@@ -1,36 +1,28 @@
 class TestDrivesController < ApplicationController
       before_action :authenticate_request!
 
-      def index
-        byebug
-        favourites = Favourite.find_by(user_id: current_user!.id)
+def index
+      test_drives = TestDrive.all
 
-        render json: CarsRepresenter.new(favourites, current_user!.id).as_json
-      end
+        render json: test_drives.as_json
+end
+
 
       def create
-
-        test_drive = current_user!.test_drive.new(user_id: params[:user_id], car_id: params[:car_id], phone_number:params[:phone], desired_time: params[:date])
-        byebug
-        if test_drive.save
-          render json: { message: 'Успішно надіслано' }, status: :created
+        @test_drive = TestDrive.new(test_drive_params)
+    
+        if @test_drive.save
+          # Handle successful test drive request
+          render json: { success: true }, status: :created
         else
-          render json: { error: test_drive.errors.full_messages.first }, status: :unprocessable_entity
+          # Handle unsuccessful test drive request
+          render json: { error: @test_drive.errors.full_messages.join(', ') }, status: :unprocessable_entity
         end
       end
-
-      def destroy
-        favourite = Favourite.find_by(user_id: current_user!.id, car_id: params[:id])
-
-        if favourite
-          favourite.destroy
-          render json: { message: 'Авто видалено із вподобаних' }
-        else
-          render json: { message: 'Упс, щось пішло не так' }
-        end
-      end
-
-      def drive_params
-          params.require(:test_drive).permit(:phone_number, :desired_time)
+    
+      private
+    
+      def test_drive_params
+        params.permit(:member_id, :car_id, :phone, :date)
       end
 end
