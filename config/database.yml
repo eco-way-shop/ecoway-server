@@ -20,7 +20,7 @@ default: &default
   database: car_shop
   username: ecoway
   password: tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM
-  host: postgres://ecoway:tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM@dpg-cp91egf109ks73a2fih0-a/car_shop
+  host: dpg-cp91egf109ks73a2fih0-a
   port: 5432
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -85,5 +85,4 @@ test:
 #
 production:
   <<: *default
-  host: postgres://ecoway:tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM@dpg-cp91egf109ks73a2fih0-a/car_shop
-  port: 5432
+
