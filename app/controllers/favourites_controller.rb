@@ -1,6 +1,4 @@
-module Api
-  module V1
-    class FavouritesController < ApplicationController
+class FavouritesController < ApplicationController
       before_action :authenticate_request!
 
       def index
@@ -29,6 +27,4 @@ module Api
           render json: { message: 'Упс, щось пішло не так' }
         end
       end
-    end
-  end
 end

@@ -1,6 +1,4 @@
-module Api
-  module V1
-    class TestDrivesController < ApplicationController
+class TestDrivesController < ApplicationController
       before_action :authenticate_request!
 
       def index
@@ -35,6 +33,4 @@ module Api
       def drive_params
           params.require(:test_drive).permit(:phone_number, :desired_time)
       end
-    end
-  end
 end

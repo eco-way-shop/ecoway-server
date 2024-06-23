@@ -1,6 +1,4 @@
-module Api
-  module V1
-    class UsersController < ApplicationController
+class UsersController < ApplicationController
       before_action :authenticate_admin!, only: :index
 
       def index
@@ -25,5 +23,3 @@ module Api
         params.require(:user).permit(:username, :password)
       end
     end
-  end
-end

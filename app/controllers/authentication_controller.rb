@@ -1,6 +1,4 @@
-module Api
-  module V1
-    class AuthenticationController < ApplicationController
+class AuthenticationController < ApplicationController
       class AuthenticateError < StandardError; end
 
       rescue_from ActionController::ParameterMissing, with: :parameter_missing
@@ -29,6 +27,4 @@ module Api
       def handle_unauthenticated
         render json: { error: 'Хибний пароль' }, status: :unauthorized
       end
-    end
-  end
 end

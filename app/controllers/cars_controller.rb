@@ -1,6 +1,4 @@
-module Api
-  module V1
-    class CarsController < ApplicationController
+class CarsController < ApplicationController
       before_action :authenticate_request!
       rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
@@ -54,6 +52,4 @@ module Api
       def no_user
         render json: { error: 'You need to login before you can add a car' }, status: :unauthorized
       end
-    end
-  end
 end
