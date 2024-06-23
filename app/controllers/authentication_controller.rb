@@ -5,13 +5,14 @@ class AuthenticationController < ApplicationController
       rescue_from AuthenticateError, with: :handle_unauthenticated
 
       def create
-        if user && user.authenticate(params.require(:password))
-          # Successful login
-          session[:user_id] = user.id  # Store user ID in session (optional)
-          redirect_to cars_path
+        if user
+          raise AuthenticateError unless user.authenticate(params.require(:password))
+          logged_user =  AuthenticateRepresenter.new(user).as_json
+          if logged_user.present?          
+            redirect_to cars_path
+          end
         else
-          # Authentication failed or user not found
-          render json: { error: user ? 'Invalid credentials' : 'No such user' }, status: :unauthorized
+          render json: { error: 'Такого користувача немає' }, status: :unauthorized
         end
       end
 
@@ -28,4 +29,5 @@ class AuthenticationController < ApplicationController
       def handle_unauthenticated
         render json: { error: 'Хибний пароль' }, status: :unauthorized
       end
+
 end

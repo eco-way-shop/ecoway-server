@@ -22,11 +22,11 @@ class ApplicationController < ActionController::API
   end
 
   def invalid_authentication
-    render json: { error: 'You will need to login first' }, status: :unauthorized
+    render json: { error: 'Для початку потрібно авторизуватись' }, status: :unauthorized
   end
 
   def non_admin_authentication
-    render json: { error: 'Only admin can access this page' }, status: :unauthorized
+    render json: { error: 'Лише адміністратор має доступ' }, status: :unauthorized
   end
 
   private
