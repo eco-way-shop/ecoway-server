@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_request!
-    p payload
+    puts payload
     return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
 
     current_user!
@@ -23,7 +23,8 @@ class ApplicationController < ActionController::API
   end
 
   def invalid_authentication
-    render json: { error: 'Для початку потрібно авторизуватись' }, status: :unauthorized
+
+    render json: { error: {payload + "----------" AuthenticationTokenService.valid_payload(payload.first)} }, status: :unauthorized
   end
 
   def non_admin_authentication
