@@ -4,11 +4,11 @@ class CarsController < ApplicationController
       MAX_PAGINATION_LIMIT = 20
 
       def index
-        current_user = current_user!
+        # current_user = current_user!
         
         cars = Car.limit(limit).offset(params[:offset])
 
-        render json: CarsRepresenter.new(cars, current_user.id).as_json
+        render json: CarsRepresenter.new(cars).as_json
       
       end
 
