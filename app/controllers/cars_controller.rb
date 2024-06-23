@@ -1,13 +1,17 @@
 class CarsController < ApplicationController
-      before_action :authenticate_request!
+      # before_action :authenticate_request!
       rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
 
       def index
-        current_user = current_user!
+        if current_user.present?
+       
         cars = Car.limit(limit).offset(params[:offset])
 
         render json: CarsRepresenter.new(cars, current_user.id).as_json
+        else
+          render json: { error: 'Для початку потрібно авторизуватись' }, status: :unauthorized
+        end
       end
 
       def create
