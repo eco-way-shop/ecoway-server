@@ -10,6 +10,7 @@
 
 User.create(username: 'user1', password: 'password')
 User.create(username: 'admin', password: 'password', admin: true)
+admin_user = User.find_by(username: "admin")
 
 admin_user.cars.create!(
   make: "Chevy",
