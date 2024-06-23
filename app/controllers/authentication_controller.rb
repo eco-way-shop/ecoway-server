@@ -1,4 +1,4 @@
-class AuthhenticationController < ApplicationController
+class AuthenticationController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create]
 
   def new
