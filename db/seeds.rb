@@ -70,4 +70,4 @@ new_car = admin_user.cars.create!(
   odometer: 40000,
   battery: 150,
   image_url: "https://img.automoto.ua/auto/Nissan-Leaf-belyiy-Hetchbek-2014-fb7-63653576.webp"
-
+)
