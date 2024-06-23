@@ -10,7 +10,7 @@ class AuthenticationTokenService
 
   def self.decode(token)
     begin
-      decoded_payload = JWT.decode(token, Rails.application.secrets.secret_key_base, true, { algorithm: JWT::Algorithm::HS256 })
+      decoded_payload = JWT.decode(token, '44be1010772506b6ed4dac161fd7c27c', true, algorithm: 'HS256')
       # Access decoded information (e.g., user ID, expiration time)
       return decoded_payload
     rescue JWT::DecodeError => e
