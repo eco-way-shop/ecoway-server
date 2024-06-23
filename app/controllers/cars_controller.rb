@@ -5,14 +5,11 @@ class CarsController < ApplicationController
 
       def index
         current_user = current_user!
-        if current_user.present?
-       
+        
         cars = Car.limit(limit).offset(params[:offset])
 
         render json: CarsRepresenter.new(cars, current_user.id).as_json
-        else
-          render json: { error: 'Для початку потрібно авторизуватись' }, status: :unauthorized
-        end
+      
       end
 
       def create
