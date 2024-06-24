@@ -29,7 +29,7 @@ gem 'rack-cors'
 gem 'nokogiri', '~> 1.15', '>= 1.15.6'
 gem 'pkg-config', '~> 1.1', '>= 1.1.7'
 gem 'wdm', '>= 0.1.0', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'config'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
