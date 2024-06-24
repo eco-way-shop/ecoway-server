@@ -17,10 +17,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: car_shop
+  database: car_shop_4r3i
   username: ecoway
-  password: tkK5dsEMMSfpGO0KyHvQaeYqH0xHLtnM
-  host: dpg-cp91egf109ks73a2fih0-a
+  password: DNn1dVYUgrJdx3CyzJPBQiCvcJRiDtNy
+  host: dpg-cpssikuehbks73eq2v30-a
   port: 5432
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
