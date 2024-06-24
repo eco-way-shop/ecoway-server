@@ -1,21 +1,21 @@
 class CarsController < ApplicationController
-      before_action :authenticate_request!
+      # before_action :authenticate_request!
       # rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
 
       def index
       
-        current_user = current_user!
+        @current_user = User.find_by(id: 1)
         
         cars = Car.limit(limit).offset(params[:offset])
 
-        render json: CarsRepresenter.new(cars, current_user.id).as_json
+        render json: CarsRepresenter.new(cars, @current_user.id).as_json
       end
 
       def create
-        current_user = current_user!
+        
 
-        car = current_user.cars.create(car_params)
+        car = @current_user.cars.create(car_params)
 
         if car.save
           render json: CarRepresenter.new(car).as_json, status: :created
@@ -25,10 +25,10 @@ class CarsController < ApplicationController
       end
 
       def show
-        current_user = current_user!
+        
         car = Car.find(params[:id])
 
-        render json: CarRepresenter.new(car, current_user.id).as_json
+        render json: CarRepresenter.new(car, @current_user.id).as_json
       end
 
       def destroy
