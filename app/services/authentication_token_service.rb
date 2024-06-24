@@ -1,5 +1,5 @@
 class AuthenticationTokenService
-  HMAC_SECRET = Rails.application.secrets.secret_key_base
+  HMAC_SECRET = 'aa0b2814d07c16e89487e90b8cb0578a1455b1793cd94d67f1ef8aa8a3c9d4ff1d3562a4280fb4018f5a458792b2e406fa46037cd9ad4c05a1af9b21ad33fa7d'
   ALGORITHM_TYPE = 'HS256'.freeze
 
   def self.call(user_id)
