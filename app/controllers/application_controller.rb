@@ -34,6 +34,7 @@ class ApplicationController < ActionController::API
   private
 
   def payload
+    puts  request.headers['Authorization'];
     auth_header = request.headers['Authorization']
     token = auth_header.split(' ').last
     AuthenticationTokenService.decode(token)

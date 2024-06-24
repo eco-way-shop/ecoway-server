@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-      # before_action :authenticate_request!
+      before_action :authenticate_request!
       # rescue_from NoMethodError, with: :no_user
       MAX_PAGINATION_LIMIT = 20
 
@@ -25,7 +25,6 @@ class CarsController < ApplicationController
       end
 
       def show
-        
         car = Car.find(params[:id])
 
         render json: CarRepresenter.new(car, @current_user.id).as_json
