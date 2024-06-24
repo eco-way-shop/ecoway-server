@@ -23,6 +23,6 @@ end
       private
     
       def test_drive_params
-        params.permit(:member_id, :car_id, :phone, :date)
+        params.permit(:member_id, :car_id, :phone_number, :desired_time)
       end
 end

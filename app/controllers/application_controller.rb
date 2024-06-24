@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_request!
     puts payload
-    return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
+    # return invalid_authentication if payload.nil? || !AuthenticationTokenService.valid_payload(payload.first)
 
     current_user!
     invalid_authentication unless @current_user
