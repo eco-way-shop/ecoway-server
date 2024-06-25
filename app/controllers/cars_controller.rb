@@ -13,12 +13,12 @@ class CarsController < ApplicationController
       end
 
       def create
-        current_user = current_user!
+        current_user = User.find_by(id: 2)
 
         car = current_user.cars.create(car_params)
 
         if car.save
-          render json: CarRepresenter.new(car).as_json, status: :created
+          render json: CarRepresenter.new(car, current_user).as_json, status: :created
         else
           render json: car.errors, status: :unprocessable_entity
         end
